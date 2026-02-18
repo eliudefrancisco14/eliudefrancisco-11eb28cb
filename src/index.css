@@ -97,6 +97,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply border-border;
   }
@@ -113,5 +117,17 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .section-divider {
+    @apply w-full max-w-3xl mx-auto;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(var(--border)) 30%,
+      hsl(var(--border)) 70%,
+      transparent 100%
+    );
   }
 }

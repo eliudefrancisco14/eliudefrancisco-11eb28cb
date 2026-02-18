@@ -5,20 +5,25 @@ import ProjectsSection from "@/components/portfolio/ProjectsSection";
 import SkillsSection from "@/components/portfolio/SkillsSection";
 import ContactSection from "@/components/portfolio/ContactSection";
 import Footer from "@/components/portfolio/Footer";
+import { DotBackground } from "@/components/ui/dot-background";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <DotBackground className="min-h-screen">
       <Navbar />
       <main>
         <HeroSection />
+        <div className="section-divider" />
         <AboutSection />
+        <div className="section-divider" />
         <ProjectsSection />
+        <div className="section-divider" />
         <SkillsSection />
+        <div className="section-divider" />
         <ContactSection />
       </main>
       <Footer />
-    </div>
+    </DotBackground>
   );
 };
 
