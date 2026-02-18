@@ -1,6 +1,8 @@
 import { Github, Linkedin, Instagram, ArrowDown } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
+import { AnimatedText } from "@/components/ui/animated-text";
 import FadeIn from "./FadeIn";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   const scrollToAbout = () => {
@@ -16,11 +18,9 @@ const HeroSection = () => {
           </p>
         </FadeIn>
 
-        <FadeIn delay={0.2}>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-foreground leading-tight mb-6">
-            {personalInfo.name}
-          </h1>
-        </FadeIn>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-foreground leading-tight mb-6">
+          <AnimatedText text={personalInfo.name} delay={0.2} />
+        </h1>
 
         <FadeIn delay={0.3}>
           <p className="text-lg text-muted-foreground leading-relaxed max-w-lg mx-auto mb-8">
@@ -30,33 +30,24 @@ const HeroSection = () => {
 
         <FadeIn delay={0.4}>
           <div className="flex items-center justify-center gap-5 mb-12">
-            <a
-              href={personalInfo.social.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-200"
-              aria-label="GitHub"
-            >
-              <Github className="w-5 h-5" />
-            </a>
-            <a
-              href={personalInfo.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-200"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href={personalInfo.social.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-200"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-5 h-5" />
-            </a>
+            {[
+              { href: personalInfo.social.github, icon: Github, label: "GitHub" },
+              { href: personalInfo.social.linkedin, icon: Linkedin, label: "LinkedIn" },
+              { href: personalInfo.social.instagram, icon: Instagram, label: "Instagram" },
+            ].map(({ href, icon: Icon, label }) => (
+              <motion.a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-200"
+                aria-label={label}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Icon className="w-5 h-5" />
+              </motion.a>
+            ))}
           </div>
         </FadeIn>
 

@@ -1,5 +1,6 @@
 import { Mail, ArrowUpRight } from "lucide-react";
 import { personalInfo } from "@/data/portfolio";
+import { motion } from "framer-motion";
 import FadeIn from "./FadeIn";
 
 const ContactSection = () => (
@@ -16,14 +17,18 @@ const ContactSection = () => (
         </p>
       </FadeIn>
       <FadeIn delay={0.2}>
-        <a
+        <motion.a
           href={`mailto:${personalInfo.email}`}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity duration-200"
+          className="relative inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm overflow-hidden"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
         >
-          <Mail className="w-4 h-4" />
-          Enviar Email
-          <ArrowUpRight className="w-3 h-3" />
-        </a>
+          {/* Shimmer overlay */}
+          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-foreground/10 to-transparent animate-shimmer bg-[length:200%_100%]" />
+          <Mail className="w-4 h-4 relative z-10" />
+          <span className="relative z-10">Enviar Email</span>
+          <ArrowUpRight className="w-3 h-3 relative z-10" />
+        </motion.a>
       </FadeIn>
     </div>
   </section>
